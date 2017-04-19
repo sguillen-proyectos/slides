@@ -1,0 +1,11 @@
+- block:
+  - name: Crear archivo de configuracion para balancear la carga
+    template:
+      src: templates/config.tpl
+      dest: /etc/nginx/sites-available/default
+      mode: "u=rw,g=r,o=r"
+
+  - name: Reiniciar nginx
+    service:
+      name: nginx
+      state: restarted

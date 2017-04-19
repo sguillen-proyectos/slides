@@ -13,6 +13,9 @@ nombre=Ser
 [load_balancer:vars]
 ansible_user=ansible
 nombre=Serrr
+nodo1=107.170.31.135
+nodo2=107.170.27.97
+nodo3=162.243.199.213
 
 # Otras variables son
 # ansible_password

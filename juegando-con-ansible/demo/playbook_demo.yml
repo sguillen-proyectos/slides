@@ -1,0 +1,18 @@
+---
+- hosts: web
+  become: True
+  vars_files:
+    - group_vars/vault.yml
+  roles:
+    - { role: base }
+    - { role: web_base, mensaje: "!!!Otro tipo de {{ansible_user}} mensaje!!!" }
+    - { role: web_config }
+
+- hosts: load_balancer
+  become: True
+  vars_files:
+    - group_vars/vault.yml
+  roles:
+    - { role: base }
+    - { role: web_base }
+    - { role: lb_config, server1: "{{nodo1}}", server2: "{{nodo2}}", server3: "{{nodo3}}" }

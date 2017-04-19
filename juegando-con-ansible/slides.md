@@ -162,18 +162,22 @@ Nos permiten tener organizados nuestros playbooks. En muchos se llegará al punt
 
 ---
 
+# Algunas observaciones :eyeglasses:
+
+* Como guardamos nuestros secretos?
+---
+
 # ¿Cómo ejecutar todo esto?
 ```
 $ ansible-playbook -i inventory/inventory.yml \
 playbook.yml
 ```
-
 ---
 
-# DEMO 
+# :sleeping: 
+<h1>Demo</h1>
 
 ---
-# :sleeping:
 # Muchas gracias...
 
 ---

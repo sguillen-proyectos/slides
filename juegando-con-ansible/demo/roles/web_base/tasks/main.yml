@@ -1,0 +1,13 @@
+---
+- block:
+
+  - name: Mostrar parametro
+    debug: msg="{{mensaje}}"
+
+  - name: Instalar nginx
+    apt:
+      name: nginx
+
+  rescue:
+    - name: Capturar un error
+      debug: msg="Hubo un error :S"

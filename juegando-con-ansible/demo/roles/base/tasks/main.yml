@@ -1,0 +1,15 @@
+---
+- block:
+  - name: Actualizar apt
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+
+  - name: Paquetes base
+    apt:
+      name: "{{item}}"
+    with_items:
+      - apt-transport-https
+      - vim
+      - htop
+      - git
