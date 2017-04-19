@@ -1,21 +1,21 @@
 [web]
-107.170.31.135
-107.170.27.97
-162.243.199.213
+107.170.35.179
+107.170.35.123
+107.170.34.214
 
 [web:vars]
 ansible_user=ansible
 nombre=Ser
 
 [load_balancer]
-107.170.32.80
+107.170.32.38
 
 [load_balancer:vars]
 ansible_user=ansible
 nombre=Serrr
-nodo1=107.170.31.135
-nodo2=107.170.27.97
-nodo3=162.243.199.213
+nodo1=107.170.35.179
+nodo2=107.170.35.123
+nodo3=107.170.34.214
 
 # Otras variables son
 # ansible_password
