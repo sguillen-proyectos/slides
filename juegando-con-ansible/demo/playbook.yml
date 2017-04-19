@@ -1,0 +1,34 @@
+---
+- hosts: web
+  become: True
+  vars_files:
+    - group_vars/vault.yml
+  tasks:
+    - name: Crear archivo plano
+      file:
+        path: /tmp/archivillo_2
+        state: touch
+        mode: 0755
+        owner: ansible
+        group: ansible
+
+    - name: Crear un directorio
+      file:
+        path: /tmp/miDirectorio
+        state: directory
+        mode: 0700
+        owner: ansible
+        group: ansible
+
+- hosts: load_balancer
+  become: True
+  vars_files:
+    - group_vars/vault.yml
+  tasks:
+    - name: Un archivo diferente
+      file:
+        path: /home/ansible/archivoLoadBalancer_2
+        state: touch
+        mode: 0666
+        owner: root
+        group: root

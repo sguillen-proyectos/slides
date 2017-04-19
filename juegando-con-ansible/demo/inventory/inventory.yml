@@ -1,0 +1,19 @@
+[web]
+107.170.31.135
+107.170.27.97
+162.243.199.213
+
+[web:vars]
+ansible_user=ansible
+nombre=Ser
+
+[load_balancer]
+107.170.32.80
+
+[load_balancer:vars]
+ansible_user=ansible
+nombre=Serrr
+
+# Otras variables son
+# ansible_password
+# ansible_become_password
