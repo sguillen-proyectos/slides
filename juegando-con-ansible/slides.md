@@ -162,6 +162,14 @@ Nos permiten tener organizados nuestros playbooks. En muchos se llegará al punt
 
 ---
 
+# ¿Cómo ejecutar todo esto?
+```
+$ ansible-playbook -i inventory/inventory.yml \
+playbook.yml
+```
+
+---
+
 # DEMO 
 
 ---
