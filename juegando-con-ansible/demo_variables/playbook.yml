@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: False
+  vars:
+    - nombre: Sergio
+      # apellido: Guillen
+  tasks:
+    - name: Task 1
+      debug: msg="Prueba local de variables"
+      delegate_to: 127.0.0.1
+
+    - name: Task 2
+      debug: msg="Nombre -> {{nombre}} Apellido -> {{apellido}}"
+      delegate_to: 127.0.0.1

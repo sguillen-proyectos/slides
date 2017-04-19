@@ -15,7 +15,6 @@
 
 [https://github.com/ansible/ansible/issues](https://github.com/ansible/ansible/issues)
 
-
 ---
 
 # ¿Ansible:confounded:?
@@ -49,13 +48,30 @@ Un `task` es una acción a realizarse: crear un archivo, instalar un paquete, cr
 Un `task` llega a ser una acción y el `module` llega a ser la herramienta que  nos ayudará a realizar esa acción.
 
 ---
-# Algunos términos importantes
+# Términos importantes
+* **Modules**
 * Inventory
-* Modules
 * Playbook
-* Roles
 * Variables
+* Roles
 
+---
+# Modules
+Ansible cuenta con más de 720 módulos. Estos módulos se agrupan por tipos:
+* Files Modules
+* Packaging Modules
+* System Modules
+* Notification Modules
+* Database Modules
+* Otros
+
+---
+# Términos importantes
+* Modules
+* **Inventory**
+* Playbook
+* Variables
+* Roles
 ---
 # Inventory
 
@@ -79,27 +95,20 @@ web-01.ejemplo.com ansible_user=ansible \
 ansible_password=flisol2017 \
 become_password=flisol2017
 
-web-02.ejemplo.com ... usuario=ansible grupo=ansible
+web-02.ejemplo.com ...
 
 [database]
 db.ejemplo.com ansible_user=ansible \
 ansible_password=flisol2017 \
 become_password=flisol2017
-
-[database:vars]
-username=ejemplo
-pass=12345
 ```
 ---
-# Modules
-Ansible cuenta con más de 720 módulos. Estos módulos se agrupan por tipos:
-* Files Modules
-* Packaging Modules
-* System Modules
-* Notification Modules
-* Database Modules
-* Otros
-
+# Términos importantes
+* Modules
+* Inventory
+* **Playbook**
+* Variables
+* Roles
 ---
 # Playbooks
 Describen la forma en como se ejecutaran una serie de `tasks` en diferentes hosts definidos en nuestro `inventory`
@@ -111,6 +120,7 @@ Describen la forma en como se ejecutaran una serie de `tasks` en diferentes host
 ---
 ```yml
 ---
+# -hosts: all,web,database,localhost,192.168.1.123
 - hosts: all
   become: True
   tasks:
@@ -129,11 +139,38 @@ $ mkdir -p /tmp/foobar \
   && chown ansible:ansible /tmp/foobar
 ```
 ---
-# Roles
-
+# Términos importantes
+* Modules
+* Inventory
+* Playbook
+* **Variables**
+* Roles
 ---
 # Variables
+Nuestros playbooks no siempre tendrán la misma información, por ejemplo las credenciales de un entorno de prueba serán diferentes a un entorno de producción. Las variables en Ansible nos proveen una forma flexible para trabajar con datos que serán diferentes en el tiempo. Algo importante es que estas variables pueden ser sobre escritas dependiendo el orden de procedencia.
+
+---
+# Términos importantes
+* Modules
+* Inventory
+* Playbook
+* Variables
+* **Roles**
+---
+# Roles
+Nos permiten tener organizados nuestros playbooks. En muchos se llegará al punto que existe código repetido :mask:. Es aquí que entran los roles a para crear código reutilizable.
+
+---
+
+# DEMO 
 
 ---
 # :sleeping:
-# DEMO 
+# Muchas gracias...
+
+---
+```
+Email:    serguimant@gmail.com
+Twitter:  @donkeysharp
+Telegram: @foobarken
+```
