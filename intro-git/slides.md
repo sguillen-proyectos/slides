@@ -108,6 +108,31 @@ $ git branch iss53 && git checkout iss53
 # ![](img4.png)
 
 ---
+# Merge
+Para realizar un merge vamos al branch donde queremos aplicar los cambios y ejecutar:
+
+```
+(iss53)$ git checkout master
+(master)$ git merge iss53
+```
+
+---
+# Merge
+### fast-forward
+# ![](img3.png)
+
+---
+# Merge
+### Three-way merge
+# ![](img5.png)
+
+
+---
+# Merge
+### Three-way merge
+# ![](img6.png)
+
+---
 # Remotes
 Un remote es simplemente otro repositorio git que puede ser accedido remotamente:
 * GitHub
@@ -115,6 +140,14 @@ Un remote es simplemente otro repositorio git que puede ser accedido remotamente
 * Bitbucket
 * Gogs
 * git init --bare *(servidor propio)*
+
+---
+# Remotes
+Para adicionar un remote ejecutamos
+```
+$ git remote add <name> <remote>
+$ git remote add origin git@github.com:foo/bar.git
+```
 
 ---
 # Remotes
@@ -138,38 +171,3 @@ From development to Testing
 * Squash
 * Stash
 * Cherry-pick
-
-<!--
-things to do:
--- for any operating system --
-
-let's you tell the story of your project
-    snapshots which is a commit
-        say structure of commit (hash, message, etc.)
-commit messages
-time travel or checkout :DD
-branches (para hacer atrocidades) lo cual genera mucho flujos de trabajo
-three-way-merge
-
-branch pointer to a commit to follow branch
-merge a combination of two or more branches 
-
-a remote
-clone 
-push
-pull
-
-other tips
-   stash
-   squash
-github
-   pull requests
-   
-migration from svn
-challenges
-
-resources
-   progit
-   git with tom and jerry
-   git branching
-->
