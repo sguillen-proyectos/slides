@@ -61,6 +61,15 @@ Alpine es una distro GNU/Linux
 
 * Musl (libc)
 * Busybox
+* Gestor de paquetes
+
+```
+$ apk update \
+  && apk add bash jq curl
+  && apk del jq bash
+```
+---
+# Layers en Docker
 
 ---
 # Layers en Docker
@@ -79,10 +88,17 @@ CMD python /app/app.py
 # ![](layers1.jpg)
 
 ---
-# Y por qué nos interesa esto?
+# ¿Y por qué nos interesa esto?
+
+ ```
+ $ docker pull jenkins:2.46.2
+ $ docker pull jenkins:2.46.2-alpine
+ ```
+
+---
 
 ```
-$ docker pull jenkins
+$ docker pull jenkins:2.46.2
 10a267c67f42: Extracting
 fb5937da9414: Download complete 
 9021b2326a1e: Download complete 
@@ -131,12 +147,49 @@ e6e9b53c8e46: Download complete
 
 ---
 # Reduciendo una imágen Docker
+
+---
+# Reduciendo una imágen Docker
 <!--
 * recomendaciones generales
-  * encadenar cosas en run
   * borrar cache
   * imagenes base
 -->
+* De ser posible poner todo en una instrucción **RUN**
+```
+FROM alpine
+RUN apk update \
+    && apk add paquete1 paquete2 paquete3 ...
+```
+---
+# Reduciendo una imágen Docker
+* Dependiendo del gestor de paquete o gestor de librerías ver donde se encuentra su cache o ver la opción para evitar la cache
+
+```
+$ rm -rf /var/cache/apk # Para apk
+$ apk add --no-cache <paquete> # Para apk
+$ rm -rf $HOME/.pip # Para python-pip
+$ rm -rf $HOME/.npm # Para nodejs npm
+$ rm -rf $HOME/.config/composer # Para php composer
+```
+
+---
+# Tener cuidado en el orden 	de instrucciones
+
+```
+FROM alpine
+COPY archivo_que_cambia.sh /root
+RUN comandos que toman mucho tiempo
+...
+```
+contra
+```
+FROM alpine
+RUN comandos que toman mucho tiempo
+COPY archivo_que_cambia.sh /root
+...
+```
+# 
 
 ---
 # Ejemplos Prácticos
