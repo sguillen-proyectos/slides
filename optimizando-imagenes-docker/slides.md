@@ -32,7 +32,6 @@ para el público:
 * Alpine
 * Layers en Docker
 * Reduciendo una imágen Docker
-* Ejemplos
 
 ---
 # Mi necesidad
@@ -166,7 +165,7 @@ RUN apk update \
 * Dependiendo del gestor de paquete o gestor de librerías ver donde se encuentra su cache o ver la opción para evitar la cache
 
 ```
-$ rm -rf /var/cache/apk # Para apk
+$ rm -rf /var/cache/apk/* # Para apk
 $ apk add --no-cache <paquete> # Para apk
 $ rm -rf $HOME/.pip # Para python-pip
 $ rm -rf $HOME/.npm # Para nodejs npm
@@ -174,7 +173,7 @@ $ rm -rf $HOME/.config/composer # Para php composer
 ```
 
 ---
-# Tener cuidado en el orden 	de instrucciones
+# Tener cuidado en el orden de las instrucciones
 
 ```
 FROM alpine
@@ -189,12 +188,44 @@ RUN comandos que toman mucho tiempo
 COPY archivo_que_cambia.sh /root
 ...
 ```
-# 
+---
+# Usar imagenes base
+```
+FROM openjdk:8-jre-alpine
+ENV CATALINA_HOME /usr/local/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
+RUN mkdir -p "$CATALINA_HOME"
+WORKDIR $CATALINA_HOME
+# let "Tomcat Native" live somewhere isolated
+ENV TOMCAT_NATIVE_LIBDIR $CATALINA_HOME/native-jni-lib
+ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
+RUN apk add --no-cache gnupg
+# see https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/KEYS
+# see also "update.sh" (https://github.com/docker-library/tomcat/blob/master/update.sh)
+ENV GPG_KEYS 05AB33110949707C93A279E3D3EFE6B686867BA6 07E48665A34DCAFAE522E5E6266191C37C037D42 47309207D818FFD8DCD3F83F1931D684307A10A5 541FBE7D8F78B25E055DDEE13C370389288584E7 61B832AC2F1C5A90F0F9B00A1C506407564C17A3 713DA88BE50911535FE716F5208B0AB1D63011C7 79F7026C690BAA50B92CD8B66A3AD3F4F22C4FED 9BA44C2621385CB966EBA586F72C284D731FABEE A27677289986DB50844682F8ACB77FC2E86E29AC A9C5DF4D22E99998D9875A5110C01C5A2F6059E7 DCFD35E0BF8CA7344752DE8B6FB21E8933C60243 F3A04C595DB5B6A5F1ECA43E3B7BBB100D811BBE F7DA48BB64BCB84ECBA7EE6935CD23C10D498E23
+SION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
+...
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+
+COPY ./hello-world.war /usr/local/tomcat/webapps
+```
 
 ---
-# Ejemplos Prácticos
+# Usar imagenes base
+```
+FROM tomcat:7.0-jre8-alpine
+
+COPY ./hello-world.war /usr/local/tomcat/webapps
+```
+
 
 ---
-```
-$ sudo shutdown "Eso es todo amigos"
-```
+# Otras recomendaciones
+* Utilizar `ONBUILD`
+* Para archivos grandes mejor descargarlas
+
+---
+<center>
+<img src="thats_all_folks.jpg" />
+</center>
