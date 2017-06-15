@@ -12,7 +12,7 @@ nombre=Ser
 
 [load_balancer:vars]
 ansible_user=ansible
-nombre=Serrr
+nombre=Serrr(inventory_list)
 nodo1=45.55.218.123
 nodo2=45.55.217.36
 nodo3=104.131.57.87
