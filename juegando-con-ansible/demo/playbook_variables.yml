@@ -8,11 +8,7 @@
     - group_vars/vault.yml
 
   tasks:
-    - name: Mostrar un mensaje
-      debug: msg="Prueba local de variables"
-      delegate_to: 127.0.0.1
-
 
     - name: Mensaje con variables
-      debug: msg="Nombre -> {{nombre}} Apellido -> {{apellido}}"
+      debug: msg="Nombre -> {{nombre}}                  Apellido -> {{apellido}}"
       delegate_to: 127.0.0.1
